@@ -16,7 +16,7 @@ fn handle_connection(mut stream: TcpStream) {
         .collect(); // fetch the result into a Vec
     let request_line: Vec<&str>= http_request[0].split(" ").collect();
 
-    let response = match request_line[0] {
+    let status_code = match request_line[0] {
             "GET" => {
                 match request_line[1] {
                     "/" => "200 OK",
@@ -31,9 +31,26 @@ fn handle_connection(mut stream: TcpStream) {
             }
             _ => "404 Not Found",
     };
-    println!("{:?}", response);
+    let header = "Content-Type: text/html";
+    let body = r#"
+    <!DOCTYPE html>
+    <html>
+        <head> 
+            <title> Hello World ! </title>
+        </head>
+        
+        <body> 
+            <h1> Hello world ! <h1> 
+            <p> This is my first basic http server based on rust </p> 
+        </body>
+    </html>
+        "#;
+    let content_lenght = body.len();
+    let response = format!(
+        "HTTP/1.1 {}\r\n{}\r\nContent-Length: {}\r\n\r\n{}",
+        status_code, header, content_lenght, body);
 
-    stream.write(b"HTTP/1.1 200 OK\r\n\r\n").expect("200\n");
+    stream.write(response.as_bytes()).expect("an error occured !");
 }
 
 fn main() {
