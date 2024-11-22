@@ -19,6 +19,7 @@ Strengthen my skills in low-level web programming.
 This project is purely for educational purposes and lacks robust error handling, scalability, and security features. Do not use it in production environments.
 
 # Next Steps
- - Add support for dynamic routing.
- - Explore asynchronous Rust to handle multiple connections.
- - Implement a basic file server for serving static files.
+ [] Add support for dynamic routing.
+ [] Add HTTP methods management
+ [] Explore asynchronous Rust to handle multiple connections.
+ [] Implement a basic file server for serving static files.

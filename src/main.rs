@@ -57,7 +57,7 @@ fn handle_connection(mut stream: TcpStream) {
 }
 
 fn main() {
-    println!("Listing on http://127.0.0.1:4221");
+    println!("Listing on http://127.0.0.1:4221/");
 
     let listener = TcpListener::bind("127.0.0.1:4221").unwrap();
 
